@@ -7,7 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "keywords": ["express", "api", "drills"],
+  "keywords": [
+    "express",
+    "api",
+    "drills"
+  ],
   "author": "James and Joel",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
