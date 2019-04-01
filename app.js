@@ -79,6 +79,16 @@ app.get('/cipher', (req, res) => {
 
 app.get('/lotto', (req, res) => {
   let arr = req.query.arr;
+  let randomArr = [];
+  let matchArr = [];
+  //arr.map(element => parseInt(element));
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = parseInt(arr[i]);
+  }
+  for (let i = 0; i < 6; i++) {
+    // gen random ..
+    randomArr[i] = Math.floor(Math.random() * Math.floor(20))
+  }
 
   if(!arr) {
     return res.status(400).send('Please provide the "arr" variable. Example: "?arr=1&arr=2..." with a total of 6 values');
@@ -89,11 +99,19 @@ app.get('/lotto', (req, res) => {
   }
 
   arr.map(number => {
-    if(number > 20) {
+    if(number > 20 || number < 1) {
       return res.status(400).send('Please provide values of less than or equal to 20.');
     }
   });
 
-  console.log(arr.length);
-  res.send(arr);
+  arr.forEach(element1 => randomArr.forEach(element2 => {
+      if(element1 === element2) {
+        matchArr.push(element1)
+      }
+    }
+  ));
+  console.log('passed in arr: ', arr);
+  console.log('random arr: ', randomArr);
+  console.log('match arr: ', matchArr);
+  res.send(matchArr);
 });
