@@ -1,5 +1,3 @@
-'use-strict';
-
 const express = require('express');
 const morgan = require('morgan');
 
@@ -59,3 +57,25 @@ app.get('/add', (req, res) => {
   res.send(derp); 
 });
 
+app.get('/cipher', (req, res) => {
+  let text = req.query.text;
+  let shift = req.query.shift;
+  let convert = '';
+  if(!text) {
+    return res.status(400).send('Please provide the "text" variable');
+  }
+
+  if(!shift) {
+    return res.status(400).send('Please provide the "shift" variable');
+  }
+
+  for (let i = 0; i < text.length; i++) {
+    //convert += String.fromCharCode(text[i]);
+    //console.log(text[i].charCodeAt(0));
+
+    convert += text[i].charCodeAt(0);
+  }
+
+  const responseText = `Text: ${text}; Convert: ${convert}`;
+  res.send(responseText);
+});
