@@ -87,6 +87,13 @@ app.get('/lotto', (req, res) => {
   if(arr.length > 6 || arr.length < 6 || arr.lenth < 0) {
     return res.status(400).send('Please provide only a total of 6 values for the "arr" variable.');
   }
+
+  arr.map(number => {
+    if(number > 20) {
+      return res.status(400).send('Please provide values of less than or equal to 20.');
+    }
+  });
+
   console.log(arr.length);
   res.send(arr);
 });
