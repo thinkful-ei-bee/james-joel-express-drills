@@ -78,5 +78,15 @@ app.get('/cipher', (req, res) => {
 });
 
 app.get('/lotto', (req, res) => {
-  console.log('hi');
+  let arr = req.query.arr;
+
+  if(!arr) {
+    return res.status(400).send('Please provide the "arr" variable. Example: "?arr=1&arr=2..." with a total of 6 values');
+  }
+
+  if(arr.length > 6 || arr.length < 6 || arr.lenth < 0) {
+    return res.status(400).send('Please provide only a total of 6 values for the "arr" variable.');
+  }
+  console.log(arr.length);
+  res.send(arr);
 });
