@@ -39,7 +39,7 @@ app.get('/addarray', (req, res) => {
   res.send({ "sum": sum }); 
 });
 
-app.get('/add', (req, res) => {
+app.get('/sum', (req, res) => {
   let a = parseInt(req.query.a);
   let b = parseInt(req.query.b);
   let sum = 0;
@@ -75,4 +75,8 @@ app.get('/cipher', (req, res) => {
 
   const responseText = `Text: ${text}; Shift: ${shift}; Convert: ${convert}`;
   res.send(responseText);
+});
+
+app.get('/lotto', (req, res) => {
+  console.log('hi');
 });
