@@ -59,7 +59,7 @@ app.get('/add', (req, res) => {
 
 app.get('/cipher', (req, res) => {
   let text = req.query.text;
-  let shift = req.query.shift;
+  let shift = parseInt(req.query.shift);
   let convert = '';
   if(!text) {
     return res.status(400).send('Please provide the "text" variable');
@@ -70,12 +70,9 @@ app.get('/cipher', (req, res) => {
   }
 
   for (let i = 0; i < text.length; i++) {
-    //convert += String.fromCharCode(text[i]);
-    //console.log(text[i].charCodeAt(0));
-
-    convert += text[i].charCodeAt(0);
+    convert += String.fromCharCode(text[i].charCodeAt(0) + shift);
   }
 
-  const responseText = `Text: ${text}; Convert: ${convert}`;
+  const responseText = `Text: ${text}; Shift: ${shift}; Convert: ${convert}`;
   res.send(responseText);
 });
