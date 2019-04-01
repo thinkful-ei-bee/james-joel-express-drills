@@ -113,5 +113,20 @@ app.get('/lotto', (req, res) => {
   console.log('passed in arr: ', arr);
   console.log('random arr: ', randomArr);
   console.log('match arr: ', matchArr);
-  res.send(matchArr);
+  // if(matchArr.length < 3) {
+  //   res.send('Sorry, you lose');
+  // }
+  if(matchArr.length === 4) {
+    res.send('Congratulations, you win a free ticket');
+  }
+  else if(matchArr.length === 5) {
+    res.send('Congratulations! You win $100!');
+  }
+  else if(matchArr.length === 6) {
+    res.send('Wow! Unbelievable! You could have won the mega millions!"');
+  }
+  else {
+    res.send('Sorry, you lose');
+  }
+  
 });
