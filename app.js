@@ -28,7 +28,7 @@ app.get('/queryviewer', (req, res) => {
   res.end(); //do not send any data back to the client
 });
 
-app.get('/add', (req, res) => {
+app.get('/addarray', (req, res) => {
   let numbers = []
   let sum = 0;
   if(req.query.numbers) {
@@ -38,5 +38,24 @@ app.get('/add', (req, res) => {
       sum += numbers[i]
     }
   }
-  res.send(` sum: ${sum} `); 
+  res.send({ "sum": sum }); 
 });
+
+app.get('/add', (req, res) => {
+  let a = parseInt(req.query.a);
+  let b = parseInt(req.query.b);
+  let sum = 0;
+  
+  if(!a) {
+    return res.status(400).send('Please provide the "a" variable');
+  }
+
+  if(!b) {
+    return res.status(400).send('Please provide the "b" variable');
+  }
+
+  const derp = `Sum: ${a + b}`;
+
+  res.send(derp); 
+});
+
